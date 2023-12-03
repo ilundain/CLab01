@@ -2,7 +2,8 @@ pipeline{
     //Directives
     agent any
     tools {
-        maven 'maven'
+        maven 'Maven'
+        // maven 'Maven 3.9.6' 
     }
 
     stages {
@@ -22,7 +23,7 @@ pipeline{
             }
         }
 
-        // Stage3 : Deploying
+        // Stage3 : Deploy
         stage ('deploy'){
             steps {
                 echo ' deploying......'
