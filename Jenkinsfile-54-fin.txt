@@ -62,31 +62,12 @@ pipeline{
             }
         }
 
-        // Stage 5 : Deploy build artifact to Tomcat
+
+        // Stage 5 : Deploy
         stage ('deploy'){
             steps {
-                echo 'Deploying......'
-                sshPublisher(publishers: 
-                    [sshPublisherDesc(
-                        configName: 'Ansible Controller', 
-                        transfers: [
-                            sshTransfer(
-                                cleanRemote: false, 
-                                // excludes: '', 
-                                execCommand: 'ansible-playbook /opt/playbooks/downloadanddeployTC.yaml -i /opt/playbooks/hosts', 
-                                execTimeout: 120000, 
-                                // flatten: false, 
-                                // makeEmptyDirs: false, 
-                                // noDefaultExcludes: false, 
-                                // patternSeparator: '[, ]+', 
-                                // remoteDirectory: '', 
-                                // remoteDirectorySDF: false, 
-                                // removePrefix: '', sourceFiles: ''
-                                )
-                            ], 
-                        usePromotionTimestamp: false, 
-                        useWorkspaceInPromotion: false, 
-                        verbose: false)])
+                echo ' deploying......'
+
             }
         }
         
