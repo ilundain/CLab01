@@ -15,7 +15,7 @@ pipeline{
     stages {
         // Specify various stage with in stages
 
-        // stage 1. Build WAR
+        // stage 1. Build
         stage ('Build'){
             steps {
                 sh 'mvn clean install package'
@@ -89,28 +89,7 @@ pipeline{
                         verbose: false)])
             }
         }
-
-       // Stage 6 : Deploy build artifact Docker
-        stage ('deploy Docker'){
-            steps {
-                echo 'Deploying......'
-                sshPublisher(publishers: 
-                    [sshPublisherDesc(
-                        configName: 'Ansible Controller', 
-                        transfers: [
-                            sshTransfer(
-                                cleanRemote: false, 
-                                // excludes: '', 
-                                execCommand: 'ansible-playbook /opt/playbooks/dddocker.yaml -i /opt/playbooks/hosts', 
-                                execTimeout: 120000, 
-                                )
-                            ], 
-                        usePromotionTimestamp: false, 
-                        useWorkspaceInPromotion: false, 
-                        verbose: false)])
-            }
-        }
-
+        
     }
 
 }
